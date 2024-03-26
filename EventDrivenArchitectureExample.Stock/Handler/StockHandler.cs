@@ -15,16 +15,20 @@ namespace EventDrivenArchitectureExample.Stock.Handler
             _dataContext = dbContext;
         }
 
-        public async Task Handle(OrderCreatedMessage orderCreatedMessage)
+        public async Task Handle(OrderPlaced orderCreatedMessage)
         {
             var eventService = new EventMessageService();
             var product = await _dataContext.Products.FirstOrDefaultAsync(p => p.Id == orderCreatedMessage.ProductId);
+            var order = await _dataContext.Orders.FirstOrDefaultAsync(p => p.Id == orderCreatedMessage.Id);
 
-            if (product?.StockQuantity >= orderCreatedMessage.Quantity)
+            if (orderCreatedMessage.Quantity <= product.StockQuantity)
             {
                 product.StockQuantity -= orderCreatedMessage.Quantity;
+                order.Status = "Baixa em estoque";
 
                 _dataContext.Products.Update(product);
+                _dataContext.Orders.Update(order);
+                
                 await _dataContext.SaveChangesAsync();
 
                 var stockChecked = new StockCheckedMessage

@@ -1,4 +1,8 @@
-﻿using Azure.Messaging.EventHubs;
+﻿using System;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
@@ -8,12 +12,8 @@ using EventDrivenArchitectureExample.Order.Handlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace EventDrivenArchitectureExample.Stock.HostedService
+namespace EventDrivenArchitectureExample.Order.HostedService
 {
     public class ProcessFinalizeOrderConsumer : BackgroundService
     {

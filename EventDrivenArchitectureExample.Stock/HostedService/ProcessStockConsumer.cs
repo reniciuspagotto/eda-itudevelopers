@@ -29,7 +29,7 @@ namespace EventDrivenArchitectureExample.Stock.HostedService
             var eventHubName = "order-created";
 
             var blobStorageConnectionString = ApplicationSettings.BlobConnection;
-            var stockContainer = "order-created-manager";
+            var stockContainer = "order-created-manager1";
 
             string consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
 
@@ -44,7 +44,7 @@ namespace EventDrivenArchitectureExample.Stock.HostedService
 
         public async Task ProcessEventHandler(ProcessEventArgs eventArgs)
         {
-            var orderMessage = JsonSerializer.Deserialize<OrderCreatedMessage>(eventArgs.Data.Body.ToArray());
+            var orderMessage = JsonSerializer.Deserialize<OrderPlaced>(eventArgs.Data.Body.ToArray());
 
             Console.WriteLine("\tReceived event: {0}", orderMessage);
 

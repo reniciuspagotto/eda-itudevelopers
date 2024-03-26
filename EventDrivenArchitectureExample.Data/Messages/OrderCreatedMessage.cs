@@ -1,6 +1,6 @@
 ﻿namespace EventDrivenArchitectureExample.Data.Messages
 {
-    public class OrderCreatedMessage
+    public class OrderPlaced
     {
         public int Id { get; set; }
         public int ProductId { get; set; }

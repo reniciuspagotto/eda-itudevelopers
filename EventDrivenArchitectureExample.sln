@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventDrivenArchitectureExam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventDrivenArchitectureExample.Payment", "EventDrivenArchitectureExample.Payment\EventDrivenArchitectureExample.Payment.csproj", "{6892A86B-517A-443A-B840-6518A5D903C0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Product", "1- Product", "{350B99D2-0B56-4722-ACFD-9D8FD43AB251}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Product", "1 - Product", "{350B99D2-0B56-4722-ACFD-9D8FD43AB251}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Order", "2 - Order", "{F20270EE-FBDC-4BF0-B145-7BFDC08A977C}"
 EndProject

@@ -15,13 +15,18 @@ namespace EventDrivenArchitectureExample.Order.Handlers
             _dataContext = dbContext;
         }
 
-        public async Task<Data.Entities.Order> Create(Data.Entities.Order order)
+        public async Task<string> Create(Data.Entities.Order order)
         {
+            var product = await _dataContext.Products.FirstOrDefaultAsync(p => p.Id == order.ProductId);
+
+            if (product is null)
+                return "Produto não encontrado";
+            
             order.Status = "Pedido em andamento";
             await _dataContext.Orders.AddAsync(order);
             await _dataContext.SaveChangesAsync();
 
-            var messageEvent = new OrderCreatedMessage
+            var messageEvent = new OrderPlaced
             {
                 Id = order.Id,
                 ProductId = order.ProductId,
@@ -29,10 +34,9 @@ namespace EventDrivenArchitectureExample.Order.Handlers
             };
 
             var eventService = new EventMessageService();
-
             await eventService.SendEvent(messageEvent, "order-created");
 
-            return order;
+            return "Ordem criada com sucesso";
         }
 
         public async Task Cancel(OrderCreatedCompensationMessage outOfStockMessage)

@@ -5,7 +5,7 @@ namespace EventDrivenArchitectureExample.Stock.Handler
 {
     public interface IStockHandler
     {
-        Task Handle(OrderCreatedMessage orderCreatedMessage);
+        Task Handle(OrderPlaced orderCreatedMessage);
         Task Handle(PaymentNotAllowedMessage paymentNotAllowedMessage);
     }
 }
